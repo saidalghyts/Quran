@@ -17,14 +17,7 @@ export default function Home() {
   const { data, error, isLoading } = useSWR<Data>(url, fetcher);
 
   if (error) return <div>Error loading data.</div>;
-  if (!data)
-    return (
-      <>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <div key={index} className="items"></div>
-        ))}
-      </>
-    );
+  if (!data) return <div>Loading....</div>;
 
   return (
     <>
