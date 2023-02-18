@@ -1,0 +1,122 @@
+/* Body */
+$headC: #08102b;
+$bodyC: #08102b;
+$bodyCa: #989b9f;
+$bodyB: #fdfcff;
+/* Link */
+$linkC: #482dff;
+$linkB: #482dff;
+/* Wave */
+$waveB: #c6dafc;
+/* Icon */
+$iconC: #08102b;
+$iconCa: #08102b;
+$iconCs: #767676;
+/* Header */
+$headerC: #343435;
+$headerT: 16px;
+$headerW: 400;
+/* write 400(normal) or 700(bold) */
+$headerB: #fffdfc;
+$headerL: 1px;
+$headerI: #08102b;
+$headerH: 60px;
+$headerHi: -60px;
+$headerHm: 60px;
+$headerR: 30px;
+/* Notif */
+$notifH: 60px;
+$notifU: #e8f0fe;
+$notifC: #01579b;
+/* Content */
+$contentB: #fffdfc;
+$contentL: #e6e6e6;
+$contentW: 1280px;
+$sideW: 300px;
+$transB: rgba(0, 0, 0, 0.05);
+/* Page */
+$pageW: 780px;
+$pageW: 780px;
+$postT: 36px;
+$postF: 16px;
+$postTm: 28px;
+$postFm: 15px;
+/* Widget */
+$widgetT: 15px;
+$widgetTw: 400;
+/* write 400(normal) or 700(bold) */
+$widgetTa: 25px;
+$widgetTac: #989b9f;
+/* Nav */
+$navW: 230px;
+$navT: #08102b;
+$navI: #08102b;
+$navB: #fffdfc;
+$navL: 1px;
+/* Search */
+$srchI: #48525c;
+$srchB: #fffdfc;
+/* Mob Men */
+$mobT: #08102b;
+$mobHv: #f1f1f0;
+$mobB: #fffdfc;
+$mobL: 1px;
+$mobBr: 12px;
+/* Footer */
+$fotT: #08102b;
+$fotB: #fffdfc;
+$fotL: 1px;
+/* Font family */
+$fontH: Google Sans Text, Arial, Helvetica, sans-serif;
+$fontB: Google Sans Text, Arial, Helvetica, sans-serif;
+$fontBa: Google Sans Text, Arial, Helvetica, sans-serif;
+$fontC: Google Sans Mono, monospace;
+/* Trans */
+$trans-1: all 0.1s ease;
+$trans-2: all 0.2s ease;
+$trans-3: all 0.3s ease;
+$trans-4: all 0.4s ease;
+/* Synx */
+$synxBg: #f6f6f6;
+$synxC: #2f3337;
+$synxOrange: #b75501;
+$synxBlue: #015692;
+$synxGreen: #54790d;
+$synxRed: #f15a5a;
+$synxGray: #656e77;
+/* Border Radius */
+$buttonR: 15px;
+$greetR: 15px;
+$iconHr: 10px;
+$thumbEr: 5px;
+$srchMr: 20px;
+$srchDr: 15px;
+/* Dark */
+$darkT: #fffdfc;
+$darkTa: #989b9f;
+$darkU: #41b375;
+$darkW: #343435;
+$darkB: #1e1e1e;
+$darkBa: #2d2d30;
+$darkBs: #252526;
+/* Responsive */
+$tablet: 896px;
+$mobile: 500px;
+
+@mixin mobile {
+  @media screen and (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $tablet) {
+    @content;
+  }
+}

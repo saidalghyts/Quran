@@ -1,0 +1,353 @@
+@tailwind components;
+@tailwind utilities;
+@import './variables.scss';
+/* Font Body and Alternative */
+@font-face {
+  font-family: 'Google Sans Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Google Sans Text'), local('Google-Sans-Text'),
+    url(https://fonts.gstatic.com/s/googlesanstext/v16/5aUu9-KzpRiLCAt4Unrc-xIKmCU5qEp2iw.woff2)
+      format('woff2');
+}
+/* Font Heading */
+@font-face {
+  font-family: 'Google Sans Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Google Sans Text'), local('Google-Sans-Text'),
+    url(https://fonts.gstatic.com/s/googlesanstext/v16/5aUp9-KzpRiLCAt4Unrc-xIKmCU5oPFTnmhjtg.woff2)
+      format('woff2');
+}
+/* Source Code Font */
+@font-face {
+  font-family: 'Google Sans Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Google Sans Mono'), local('Google-Sans-Mono'),
+    url(https://fonts.gstatic.com/s/googlesansmono/v4/P5sUzYWFYtnZ_Cg-t0Uq_rfivrdYH4RE8-pZ5gQ1abT53wVQGrk.woff2)
+      format('woff2');
+}
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+  font-family: $fontH;
+  color: $headC;
+  .drK & {
+    color: $darkT;
+  }
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: (2 - $i / 10) + rem;
+  }
+}
+
+a {
+  color: $linkC;
+  text-decoration: none;
+  .drK & {
+    color: $darkU;
+  }
+  &:hover {
+    opacity: 0.9;
+    transition: opacity 0.1s;
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+  font-size: 100%;
+  color: inherit;
+  line-height: normal;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 12px 15px;
+  outline: 0;
+  border: 0;
+  border-radius: $buttonR;
+  line-height: 20px;
+  color: #fffdfc;
+  background: $linkB;
+  font-size: 14px;
+  font-family: $fontB;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 320px;
+  .drK & {
+    background: $darkU;
+    color: $darkT;
+  }
+}
+
+img {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  width: 22px;
+  height: 22px;
+  fill: $iconC;
+  .drK & {
+    fill: $darkT;
+  }
+
+  &.line,
+  & .line {
+    fill: none !important;
+    stroke: $iconC;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1;
+  }
+
+  &.c-1 {
+    fill: $iconCa;
+    .drK & {
+      fill: $darkT;
+    }
+  }
+
+  &.c-2 {
+    fill: $iconCs;
+    opacity: 0.4;
+  }
+
+  &.svgC {
+    fill: $linkC;
+
+    .drK & {
+      fill: $darkU;
+    }
+
+    &.line {
+      fill: none;
+      stroke: $linkC;
+
+      .drK & {
+        fill: none;
+        stroke: $darkU;
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.clear {
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  float: none;
+  clear: both;
+}
+
+.fCls {
+  display: block;
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  transition: $trans-1;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.fixT .c::before,
+.mnH .c::after {
+  content: attr(aria-label);
+  font-size: 11px;
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+.fixH .c::after,
+.mnH .c::before {
+  content: '\2715';
+  line-height: 18px;
+  font-size: 14px;
+}
+
+.drK svg.line,
+.drK .ancrC svg {
+  fill: none;
+  stroke: $darkT;
+}
+
+.drK .tDL svg .f {
+  stroke: none;
+  fill: $darkT;
+}
+
+/* Main Element */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  top: 0 !important;
+  margin: 0;
+  padding: 0 !important;
+  width: 100%;
+  font-family: $fontB;
+  font-size: 14px;
+  color: $bodyC;
+  background: $bodyB;
+  -webkit-font-smoothing: antialiased;
+  animation: opaCity 1s 0s;
+  -webkit-animation: opaCity 1s 0s;
+}
+@include desktop {
+  .mainIn {
+    display: flex;
+  }
+}
+
+.drK {
+  background: $darkB;
+  color: $darkT;
+}
+
+.secIn {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: $contentW;
+  @include desktop {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .blogM {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 40px;
+    @include desktop {
+      display: flex;
+    }
+    .mainBar {
+      width: 100%;
+      display: grid;
+
+      gap: 20px;
+      @include desktop {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+      .items {
+        background: $contentB;
+        box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+        border-radius: 10px;
+        height: 150px;
+        padding: 10px;
+        position: relative;
+        .drK & {
+          background: $darkBa;
+        }
+      }
+    }
+  }
+}
+
+.tIc {
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  &::after {
+    content: '';
+    background: $transB;
+    border-radius: $iconHr;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: $trans-1;
+    opacity: 0;
+    visibility: hidden;
+
+    .drK & {
+      background: $darkBs;
+    }
+  }
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.3, 1.3);
+  }
+}
+
+.bIc {
+  display: flex;
+  align-items: center;
+}
+.blogCnt {
+  flex-grow: 1;
+  padding: 20px 0 0;
+  position: relative;
+  transition: $trans-1;
+  .drK &::before {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  @include desktop {
+    padding-top: 30px;
+    width: calc(100% - $navW);
+    &::before {
+      content: '';
+      position: absolute;
+      top: $headerHi;
+      left: 0;
+      height: calc(100% + $headerH);
+      .drK & {
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+}

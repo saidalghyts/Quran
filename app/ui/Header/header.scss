@@ -1,0 +1,500 @@
+@import '../../styles/variables.scss';
+
+header {
+  width: 100%;
+  z-index: 10;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 0 15px rgb(0 0 0 / 7%);
+  a {
+    .drK & {
+      color: $darkT;
+    }
+  }
+  .drK & {
+    border-color: rgba(255, 255, 255, 0.15);
+    @include desktop {
+      border-bottom: $headerL solid rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+  }
+
+  .headIc {
+    font-size: 11px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > * {
+      position: relative;
+    }
+    svg {
+      z-index: 1;
+    }
+    .tNav svg > * {
+      transition: $trans-1;
+    }
+  }
+  @include tablet {
+    &,
+    .drK & {
+      box-shadow: none;
+      border: none;
+    }
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $headerI;
+    opacity: 0.8;
+  }
+  svg.line {
+    fill: none;
+    stroke: $headerI;
+  }
+  .headCn {
+    position: relative;
+    height: $headerH;
+    color: $headerC;
+    background: $headerB;
+    display: flex;
+    .drK & {
+      background: $darkB;
+      color: $darkT;
+    }
+    .headL {
+      display: flex;
+      align-items: center;
+      width: $navW;
+      padding: 0 0 0 20px;
+      transition: $trans-1;
+      @include tablet {
+        padding: 0 0 0 15px;
+        flex-grow: 1;
+        width: 50%;
+      }
+      .headIc {
+        flex: 0 0 30px;
+      }
+
+      .headN {
+        width: calc(100% - 30px);
+        padding: 0 0 0 5px;
+        .headH {
+          display: block;
+          color: inherit;
+          font-size: $headerT;
+          font-weight: $headerW;
+          .headSub {
+            margin: 0 5px;
+            font: 400 11px $fontB;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 60px;
+            opacity: 0.6;
+          }
+          .headSub::before {
+            content: attr(data-text);
+          }
+          .headTtl {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+          }
+        }
+        .headH.hasSub {
+          display: flex;
+          align-items: baseline;
+        }
+      }
+    }
+    .headR {
+      padding: 0 25px;
+      flex-grow: 1;
+      transition: $trans-1;
+      @include tablet {
+        padding: 0 20px 0 0;
+        flex-grow: 0;
+      }
+      .headM {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px 0;
+        width: 150px;
+        background: $contentB;
+        font-size: 13px;
+        border-radius: 10px 5px 10px 10px;
+        box-shadow: 0 0 15px rgb(0 0 0 / 7%);
+        -webkit-transition: $trans-2;
+        transition: $trans-2;
+        overflow: hidden;
+        z-index: 18;
+        .drK & {
+          background: $darkBs;
+        }
+        > *:before {
+          content: attr(aria-label);
+          opacity: 0.9;
+        }
+        > *:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+      }
+      .headM:before {
+        content: attr(data-text);
+        display: block;
+        padding: 0 15px 10px;
+        width: 100%;
+        font-size: 11px;
+        opacity: 0.7;
+      }
+      .headM > * {
+        display: block;
+        padding: 8px 10px;
+        margin: 5px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .headI {
+        height: 100%;
+        justify-content: space-between;
+        position: relative;
+        width: calc(100% + 15px);
+        left: -7.5px;
+        right: -7.5px;
+        display: flex;
+        align-items: center;
+        > * {
+          margin: 0 7.5px;
+        }
+        .headS {
+          @include tablet {
+            margin: 0;
+          }
+
+          .BlogSearch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 12;
+            @include desktop {
+              position: static;
+              .fCls {
+                display: none;
+              }
+            }
+            form {
+              position: relative;
+              min-width: 320px;
+              input {
+                position: relative;
+                display: block;
+                background: $srchB;
+                border: 0;
+                outline: 0;
+                margin-top: -100%;
+                padding: 10px 55px;
+                width: 100%;
+                height: 72px;
+                transition: $trans-1;
+                z-index: 2;
+                border-radius: 0 0 $srchMr $srchMr;
+                @include desktop {
+                  &:hover {
+                    background: $transB;
+                  }
+                  .drK &:hover {
+                    background: $darkBa;
+                  }
+                  .drK &:focus {
+                    background: $darkBa;
+                  }
+                }
+
+                .drK & {
+                  background: $darkBa;
+                  @include desktop {
+                    background: $darkBs;
+                  }
+                }
+
+                &:focus ~ .fCls {
+                  opacity: 1;
+                  visibility: visible;
+                  background: rgba(0, 0, 0, 0.2);
+                  -webkit-backdrop-filter: saturate(180%) blur(10px);
+                  backdrop-filter: saturate(180%) blur(10px);
+                }
+
+                &:focus {
+                  margin-top: 0;
+                  box-shadow: 0 10px 40px rgb(0 0 0 / 20%);
+                  @include desktop {
+                    box-shadow: none;
+                    margin-top: 0;
+                    background: $transB;
+                  }
+                }
+
+                &:focus ~ button.sb {
+                  opacity: 0.9;
+                }
+
+                .drK &::placeholder {
+                  color: rgba(255, 255, 255, 0.25);
+                }
+
+                @include desktop {
+                  margin-top: 0;
+                  padding: 12px 42px;
+                  height: auto;
+                  font-size: 13px;
+                  border-radius: $srchDr;
+                  background: rgba(0, 0, 0, 0.03);
+                  width: calc(100% + 26px);
+                  left: -13px;
+                  right: -13px;
+                  transition: $trans-2;
+                }
+              }
+
+              .sb {
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                z-index: 3;
+                opacity: 0.7;
+                height: 100%;
+                background: transparent;
+                border: 0;
+                outline: 0;
+                @include desktop {
+                  padding: 0;
+                }
+
+                svg {
+                  width: 18px;
+                  height: 18px;
+                  stroke: $srchI;
+                  .drK & {
+                    fill: none;
+                    stroke: $darkT;
+                  }
+                }
+              }
+              button.sb {
+                left: auto;
+                right: 0;
+                opacity: 0;
+                font-size: 13px;
+                &::before {
+                  content: '\2715';
+                }
+              }
+            }
+          }
+        }
+        .headP {
+          display: flex;
+          justify-content: flex-end;
+          position: relative;
+          .headIc {
+            .isDrk {
+              .d1 {
+                .drK & {
+                  display: none;
+                }
+              }
+              .d2 {
+                display: none;
+                .drK & {
+                  display: block;
+                }
+              }
+            }
+            .isSrh {
+              display: none;
+              @include tablet {
+                display: block;
+              }
+            }
+            > * {
+              position: relative;
+            }
+            .isBkm {
+              display: block;
+              .tBkmt::before {
+                background: #e6e6e6;
+                border-radius: 10px;
+                color: $bodyC;
+                content: attr(data-text);
+                font-size: 90%;
+                padding: 2px 5px;
+                position: absolute;
+                right: 2px;
+                top: -3px;
+                z-index: 2;
+              }
+            }
+          }
+          ul.headIc {
+            position: relative;
+            width: calc(100% + 14px);
+            left: -7px;
+            right: -7px;
+            justify-content: flex-end;
+            li {
+              margin: 0 2px;
+              > *:not(.headM):not(.fCls):not(.cusW) {
+                cursor: pointer;
+              }
+            }
+          }
+          .cBkPs {
+            display: block;
+
+            .wBkm {
+              background: $contentB;
+              border-radius: 16px 5px 16px 16px;
+              box-shadow: 0 10px 25px -3px rgb(0 0 0 / 10%);
+              display: flex;
+              max-height: 400px;
+              overflow: hidden;
+              position: absolute;
+              right: 0;
+              transition: $trans-4;
+              width: 375px;
+              top: -5px;
+              z-index: 4;
+              opacity: 0;
+              visibility: hidden;
+              @include mobile {
+                border-radius: 12px 12px 0 0;
+                bottom: -100%;
+                left: 0;
+                max-height: calc(100% - $headerH);
+                position: fixed;
+                right: 0;
+                top: auto;
+                width: 100%;
+              }
+
+              .drK & {
+                background: $darkBs;
+              }
+              .fixLs {
+                padding: 60px 20px 20px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                width: 100%;
+                background: $contentB;
+                .drK & {
+                  background: $darkBs;
+                }
+                .fixH {
+                  display: flex;
+                  background: inherit;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  padding: 0 10px;
+                  z-index: 2;
+
+                  .cl {
+                    padding: 0 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    position: relative;
+                    flex-shrink: 0;
+                    min-width: 40px;
+                    cursor: pointer;
+                  }
+                }
+                .fixT::before {
+                  content: attr(data-text);
+                  flex-grow: 1;
+                  padding: 16px 10px;
+                  font-size: 90%;
+                  opacity: 0.7;
+                }
+                .bkmC {
+                  & > .n {
+                    animation: opaC0 0.3s 0s, opaCity 0.5s 0.3s;
+                    text-align: center;
+                  }
+                  .n > svg {
+                    color: $linkC;
+                    height: 30px;
+                    width: 30px;
+                    .drK & {
+                      color: $darkU;
+                    }
+                  }
+                  .n > a {
+                    font-size: 90%;
+                    justify-content: center;
+                    min-width: 100%;
+                    padding: 6px 12px;
+                  }
+                }
+              }
+            }
+            .openBkm {
+              opacity: 1;
+              top: 0;
+              visibility: visible;
+              @include mobile {
+                bottom: 0;
+                top: auto;
+              }
+            }
+            .bkmCls {
+              background: transparent;
+              bottom: 0;
+              display: block;
+              left: 0;
+              position: fixed;
+              right: 0;
+              top: 0;
+              transition: $trans-1;
+              visibility: visible;
+              opacity: 1;
+              z-index: 3;
+              @include mobile {
+                -webkit-backdrop-filter: saturate(180%) blur(10px);
+                backdrop-filter: saturate(180%) blur(10px);
+                background: rgba(0, 0, 0, 0.2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* DARK */
+
+.bD:not(.drK):not(.syD) .headR .headM .lgtB {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.drK:not(.syD) .headR .headM .drkB {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.syD .headR .headM .sydB {
+  background-color: rgba(0, 0, 0, 0.1);
+}
