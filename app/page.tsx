@@ -14,7 +14,7 @@ const fetcher = async () => {
 };
 
 export default function Home() {
-  const { data, error } = useSWR<Data>(url, fetcher);
+  const { data, error, isLoading } = useSWR<Data>(url, fetcher);
 
   if (error) return <div>Error loading data.</div>;
   if (!data)
