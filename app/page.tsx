@@ -14,11 +14,16 @@ const fetcher = async () => {
 };
 
 export default function Home() {
-  const { data, error, isLoading } = useSWR<Data>(url, fetcher);
+  const { data, error } = useSWR<Data>(url, fetcher);
 
   if (error) return <div>Error loading data.</div>;
-  if (!data) return <div>Loading....</div>;
-
+  if (!data) {
+    const items = [];
+    for (let i = 0; i < 2; i++) {
+      items.push(<div key={i} className="items"></div>);
+    }
+    return <>{items}</>;
+  }
   return (
     <>
       <main className="mainBar">
