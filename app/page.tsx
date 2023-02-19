@@ -29,7 +29,7 @@ const SkeletonItem = () => {
   );
 };
 const Skeleton = () => {
-  const items = Array.from({ length: 114 }, (_, i) => <SkeletonItem key={i} />);
+  const items = Array.from({ length: 9 }, (_, i) => <SkeletonItem key={i} />);
   return <main className="mainBar">{items}</main>;
 };
 
