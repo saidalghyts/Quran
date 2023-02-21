@@ -19,7 +19,7 @@ type Props = {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export async function getStaticProps() {
-  const res = await fetch('/data/data.json');
+  const res = await fetch('https://api.quran.gading.dev/surah');
   const data = await res.json();
 
   return { props: { data } };
