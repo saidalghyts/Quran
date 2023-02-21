@@ -12,12 +12,18 @@ interface Data {
   };
 }
 
-const url = '/daftar-surah.json';
-const fetcher = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+type Props = {
+  data: string;
 };
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+export async function getStaticProps() {
+  const res = await fetch('/data/data.json');
+  const data = await res.json();
+
+  return { props: { data } };
+}
 
 const SkeletonItem = () => {
   return (
@@ -28,22 +34,22 @@ const SkeletonItem = () => {
     </div>
   );
 };
+
 const Skeleton = () => {
   const items = Array.from({ length: 15 }, (_, i) => <SkeletonItem key={i} />);
-
-  const items = Array.from({ length: 9 }, (_, i) => <SkeletonItem key={i} />);
   return <main className="mainBar">{items}</main>;
 };
 
-export default function Home() {
-  const { data, error } = useSWR<Data>(url, fetcher);
+export default function Home(props: Props) {
+  const { data, error } = useSWR('/data/data.json', fetcher);
 
   if (error) return <div>Error loading data.</div>;
   if (!data) return <Skeleton />;
+
   return (
     <>
       <main className="mainBar">
-        {data.data.map((surah: any) => (
+        {data.data.map((surah: Data) => (
           <div key={surah.number} className="items flex">
             <div className="h-full w-[15%]">{surah.number}</div>
             <div className="h-full w-[60%] flex flex-col">
