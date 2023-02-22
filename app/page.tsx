@@ -1,5 +1,6 @@
-'use client';
-import useSWR from 'swr';
+import Link from 'next/link';
+import { Suspense } from 'react';
+import Loading from './ui/loading';
 
 interface Data {
   data: any;
@@ -12,54 +13,36 @@ interface Data {
   };
 }
 
-type Props = {
-  data: string;
-};
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-export async function getStaticProps() {
+async function getData() {
   const res = await fetch('https://api.quran.gading.dev/surah');
-  const data = await res.json();
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-  return { props: { data } };
+  return res.json();
 }
-
-const SkeletonItem = () => {
-  return (
-    <div className="items flex gap-[10px]">
-      <div className="h-full w-[15%] bg-slate-200 animate-pulse rounded-md"></div>
-      <div className="h-full w-[60%] bg-slate-200 animate-pulse rounded-md"></div>
-      <div className="h-full w-[25%] bg-slate-200 animate-pulse rounded-md"></div>
-    </div>
-  );
-};
-
-const Skeleton = () => {
-  const items = Array.from({ length: 15 }, (_, i) => <SkeletonItem key={i} />);
-  return <main className="mainBar">{items}</main>;
-};
-
-export default function Home(props: Props) {
-  const { data, error } = useSWR('/data/data.json', fetcher);
-
-  if (error) return <div>Error loading data.</div>;
-  if (!data) return <Skeleton />;
+export default async function Home() {
+  const data = await getData();
 
   return (
     <>
-      <main className="mainBar">
-        {data.data.map((surah: Data) => (
-          <div key={surah.number} className="items flex">
-            <div className="h-full w-[15%]">{surah.number}</div>
-            <div className="h-full w-[60%] flex flex-col">
-              <span>{surah.name.transliteration.id}</span>
-              <span>{surah.name.translation.id}</span>
+      <Suspense fallback={<Loading />}>
+        <main className="mainBar">
+          {data?.data.map((surah: Data) => (
+            <div key={surah.number} className="items flex">
+              <div className="h-full w-[15%]">{surah.number}</div>
+              <div className="h-full w-[60%] flex flex-col">
+                <Link href={'/surah/' + surah.number}>
+                  <span>{surah.name.transliteration.id}</span>
+                </Link>
+
+                <span>{surah.name.translation.id}</span>
+              </div>
+              <div className="h-full w-[25%]">{surah.name.long}</div>
             </div>
-            <div className="h-full w-[25%]">{surah.name.long}</div>
-          </div>
-        ))}
-      </main>
+          ))}
+        </main>
+      </Suspense>
     </>
   );
 }
