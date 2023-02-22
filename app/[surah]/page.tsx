@@ -1,26 +1,13 @@
+import getDetailSurah from '../lib/getDetailSurah';
+import getSurah from '../lib/getSurah';
+
 type Props = {
   params: { surah: string };
 };
 
-async function getDetail(id: any) {
-  const res = await fetch(`https://api.quran.gading.dev/surah/${id}`);
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-  return res.json();
-}
-async function getData() {
-  const res = await fetch('https://api.quran.gading.dev/surah');
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
 export default async function Surah({ params }: Props) {
   const path = params.surah.toLowerCase();
-  const data = await getData();
+  const data = await getSurah();
 
   function getIdFromName(path: string, data: any[]) {
     const check = data
@@ -34,7 +21,25 @@ export default async function Surah({ params }: Props) {
   if (!id) {
     return <p>Surah not found</p>;
   }
-  const detailSurah = await getDetail(id);
+  const detailSurah = await getDetailSurah(id);
 
-  return <div>{detailSurah.data.name.transliteration.id}</div>;
+  return (
+    <div>
+      <p className="text-center text-3xl font-bold font-['Uthmani']">
+        {detailSurah.data.preBismillah
+          ? 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ'
+          : ''}
+      </p>
+      {detailSurah.data.verses.map((a: any) => (
+        <>
+          <div className={'body-ayat mb-6'}>
+            <span key={a.number.inSurah} className="arab mb-2">
+              {a.text.arab}
+            </span>
+            <span className="translation">{a.translation.id}</span>
+          </div>
+        </>
+      ))}
+    </div>
+  );
 }

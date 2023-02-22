@@ -31,6 +31,10 @@
     url(https://fonts.gstatic.com/s/googlesansmono/v4/P5sUzYWFYtnZ_Cg-t0Uq_rfivrdYH4RE8-pZ5gQ1abT53wVQGrk.woff2)
       format('woff2');
 }
+@font-face {
+  font-family: 'Uthmani';
+  src: url(/UthmanicHafs1Ver09.otf);
+}
 
 *,
 ::after,
@@ -62,6 +66,10 @@ h6 {
   h#{$i} {
     font-size: (2 - $i / 10) + rem;
   }
+}
+
+li {
+  list-style: none;
 }
 
 a {
@@ -349,5 +357,20 @@ body {
         border-right: 1px solid rgba(255, 255, 255, 0.15);
       }
     }
+  }
+}
+
+.body-ayat {
+  display: flex;
+  flex-direction: column;
+
+  & .arab {
+    direction: rtl;
+    font-size: 20px;
+    font-family: 'Uthmani';
+    font-weight: 600;
+  }
+  .translation {
+    font-size: 12px;
   }
 }

@@ -26,9 +26,7 @@ export default function RootLayout({
             <div className="mainIn">
               <Sidebar />
               <div className="blogCnt">
-                <div className="secIn">
-                  <div className="blogM">{children}</div>
-                </div>
+                <div className="secIn">{children}</div>
               </div>
             </div>
           </div>
