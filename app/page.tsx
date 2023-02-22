@@ -32,7 +32,7 @@ export default async function Home() {
             <div key={surah.number} className="items flex">
               <div className="h-full w-[15%]">{surah.number}</div>
               <div className="h-full w-[60%] flex flex-col">
-                <Link href={'/surah/' + surah.number}>
+                <Link href={'/' + surah.name.transliteration.id.toLowerCase()}>
                   <span>{surah.name.transliteration.id}</span>
                 </Link>
 
