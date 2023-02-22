@@ -1,4 +1,4 @@
-export default function Loading() {
+export default function SkeletonLoading() {
   const SkeletonItem = () => {
     return (
       <div className="items flex gap-[10px]">

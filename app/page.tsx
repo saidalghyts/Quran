@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import Loading from './ui/loading';
+import SkeletonLoading from './ui/SkeletonLoading';
 
 interface Data {
   data: any;
@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<SkeletonLoading />}>
         <main className="mainBar">
           {data?.data.map((surah: Data) => (
             <div key={surah.number} className="items flex">
