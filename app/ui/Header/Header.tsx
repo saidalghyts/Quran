@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { Context } from '../../contexs/Context';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import './header.scss';
 export default function Header() {
-  const { open, setOpen } = useContext(Context);
   const [openTheme, setOpenTheme] = useState(false);
   const [openBookmark, setOpenBookmark] = useState(false);
   const [theme, setTheme] = useState('system-default');
@@ -85,14 +84,14 @@ export default function Header() {
       <div className="headCn">
         <div className="headL">
           <div className="headIc">
-            <label onClick={() => setOpen(!open)} className="tNav tIc bIc">
+            <label className="tNav tIc bIc">
               <svg className="line" viewBox="0 0 24 24">
-                <g style={{ opacity: open ? '1' : '0' }} className="h1">
+                <g style={{ opacity: '1' }} className="h1">
                   <path d="M 3 18 H 14 M 10 6 H 21" />
                   <line className="svgC" x1={3} x2={21} y1={12} y2={12} />
                 </g>
                 <g
-                  style={{ opacity: open ? '0' : '1' }}
+                  style={{ opacity: '0' }}
                   className="h2"
                   transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.000000, 8.500000)">
                   <path d="M14,0 C14,0 9.856,7 7,7 C4.145,7 0,0 0,0"></path>
@@ -104,9 +103,11 @@ export default function Header() {
             <div className="headInnr">
               <h1 className="headH notranslate hasSub">
                 <bdi>
-                  <span className="headTtl">Al-Quran</span>
+                  <Link href={'/'}>
+                    <span className="headTtl">Al-Quran</span>
+                  </Link>
                 </bdi>
-                <span className="headSub" data-text="Blog" />
+                <span className="headSub" id="headSub" />
               </h1>
             </div>
           </div>

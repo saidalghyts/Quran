@@ -3,7 +3,6 @@
 import { ContextProvider } from './contexs/Context';
 import './styles/globals.scss';
 import Header from './ui/Header/Header';
-import Sidebar from './ui/Sidebar/Sidebar';
 
 export default function RootLayout({
   children,
@@ -13,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Al-Qur&#39;an</title>
+        <title>Al-Quran</title>
         <meta name="description" content="Baca Al-Qur'an Online" />
         <link rel="icon" href="/favicon.ico" />
       </head>
@@ -24,9 +23,10 @@ export default function RootLayout({
           <div className="mainWrp">
             <Header />
             <div className="mainIn">
-              <Sidebar />
               <div className="blogCnt">
-                <div className="secIn">{children}</div>
+                <div className="secIn">
+                  <div className="blogM">{children}</div>
+                </div>
               </div>
             </div>
           </div>

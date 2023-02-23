@@ -269,12 +269,7 @@ body {
     padding-right: 25px;
   }
   .blogM {
-    flex-wrap: wrap;
-    justify-content: center;
     padding-bottom: 40px;
-    @include desktop {
-      display: flex;
-    }
     .mainBar {
       width: 100%;
       display: grid;

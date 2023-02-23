@@ -2,12 +2,12 @@
 import { useState, createContext } from 'react';
 export const Context = createContext();
 export const ContextProvider = ({ children }) => {
-  const [open, setOpen] = useState(true);
+  const [subTtl, setSubTtl] = useState('');
   return (
     <Context.Provider
       value={{
-        open,
-        setOpen,
+        subTtl,
+        setSubTtl,
       }}>
       {children}
     </Context.Provider>

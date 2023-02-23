@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import getDetailSurah from '../lib/getDetailSurah';
 import getSurah from '../lib/getSurah';
 
@@ -30,14 +31,18 @@ export default async function Surah({ params }: Props) {
           ? 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ'
           : ''}
       </p>
+
       {detailSurah.data.verses.map((a: any) => (
         <>
-          <div className={'body-ayat mb-6'}>
-            <span key={a.number.inSurah} className="arab mb-2">
-              {a.text.arab}
-            </span>
-            <span className="translation">{a.translation.id}</span>
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className={'body-ayat mb-6'}>
+              <span key={a.number.inSurah} className="arab mb-2">
+                {a.text.arab}
+              </span>
+
+              <span className="translation">{a.translation.id}</span>
+            </div>
+          </Suspense>
         </>
       ))}
     </div>
