@@ -25,7 +25,9 @@ export default function RootLayout({
             <div className="mainIn">
               <div className="blogCnt">
                 <div className="secIn">
-                  <div className="blogM">{children}</div>
+                  <div className="blogM">
+                    {children}
+                  </div>
                 </div>
               </div>
             </div>

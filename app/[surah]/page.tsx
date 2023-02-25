@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import getDetailSurah from '../lib/getDetailSurah';
 import getSurah from '../lib/getSurah';
 
@@ -24,9 +23,19 @@ export default async function Surah({ params }: Props) {
   }
   const detailSurah = await getDetailSurah(id);
 
+  const gh = (n: number) => {
+    let ar = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    let nm = `${n}`;
+    let result = '';
+    for (let c of nm) {
+      result += ar[parseInt(c)];
+    }
+    return result;
+  };
+
   return (
     <div>
-      <p className="text-center text-3xl font-bold font-['Uthmani']">
+      <p className="text-center text-3xl font-bold font-['Uthmani'] mb-12">
         {detailSurah.data.preBismillah
           ? 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ'
           : ''}
@@ -34,15 +43,15 @@ export default async function Surah({ params }: Props) {
 
       {detailSurah.data.verses.map((a: any) => (
         <>
-          <Suspense fallback={<div>Loading...</div>}>
-            <div className={'body-ayat mb-6'}>
-              <span key={a.number.inSurah} className="arab mb-2">
-                {a.text.arab}
-              </span>
+          <div className={'body-ayat mb-6 items w-full ayat'}>
+            <span key={a.number.inSurah} className="arab mb-2">
+              {a.text.arab}&nbsp;{gh(a.number.inSurah)}
+            </span>
 
-              <span className="translation">{a.translation.id}</span>
-            </div>
-          </Suspense>
+            <span key={a.number.inSurah} className="translation">
+              {a.translation.id}
+            </span>
+          </div>
         </>
       ))}
     </div>
